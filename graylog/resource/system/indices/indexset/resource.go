@@ -90,6 +90,12 @@ func Resource() *schema.Resource {
 				Type:     schema.TypeBool,
 				Optional: true,
 			},
+			"data_tiering": {
+				Type:             schema.TypeString,
+				Required:         true,
+				DiffSuppressFunc: util.SchemaDiffSuppressJSONString,
+				ValidateFunc:     util.ValidateIsJSON,
+			},
 			// field_type_refresh_interval was added from Graylog API v3
 			"field_type_refresh_interval": {
 				Type:     schema.TypeInt,
