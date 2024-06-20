@@ -39,6 +39,10 @@ func DataSource() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"data_tiering": {
+				Type:     schema.TypeString,
+				Computed: true,
+			},
 			"index_analyzer": {
 				Type:     schema.TypeString,
 				Computed: true,
