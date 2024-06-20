@@ -1,3 +1,5 @@
 .idea
 *.tfstate
 *.tfstate.backup
+dist
+vendor
