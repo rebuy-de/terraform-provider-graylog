@@ -15,6 +15,11 @@ func create(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return err
 	}
+
+	if d.Get("data_tiering") != "" {
+		d.Set("use_legacy_rotation", false)
+	}
+
 	data, err := getDataFromResourceData(d)
 	if err != nil {
 		return err
