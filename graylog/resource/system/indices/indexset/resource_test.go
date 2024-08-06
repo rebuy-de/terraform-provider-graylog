@@ -2,7 +2,7 @@ package indexset
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -37,7 +37,7 @@ func TestAccIndexSet(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body:       ioutil.NopCloser(strings.NewReader(indexsetBody)),
+					Body:       io.NopCloser(strings.NewReader(indexsetBody)),
 				}, nil
 			},
 		},
@@ -62,7 +62,7 @@ func TestAccIndexSet(t *testing.T) {
 					"retention_strategy", "retention_strategy_class",
 					"index_analyzer", "index_optimization_max_num_segments",
 					"index_optimization_disabled", "field_type_refresh_interval",
-					"creation_date", "writable",
+					"creation_date", "writable", "use_legacy_rotation", "data_tiering",
 				}
 				if err := testutil.EqualMapKeys(body, keys...); err != nil {
 					t.Fatal(err)
@@ -101,7 +101,9 @@ func TestAccIndexSet(t *testing.T) {
   "index_optimization_disabled": true,
   "field_type_refresh_interval": 5000,
   "writable": true,
-  "default": false
+  "default": false,
+  "data_tiering": null,
+  "use_legacy_rotation": true
 }`
 			},
 		},
@@ -132,7 +134,9 @@ func TestAccIndexSet(t *testing.T) {
   "index_optimization_disabled": true,
   "field_type_refresh_interval": 5000,
   "writable": true,
-  "default": false
+  "default": false,
+  "data_tiering": null,
+  "use_legacy_rotation": true
 }`,
 		},
 	}
@@ -212,7 +216,7 @@ EOF
 					"retention_strategy", "retention_strategy_class",
 					"index_analyzer", "index_optimization_max_num_segments",
 					"index_optimization_disabled", "field_type_refresh_interval",
-					"creation_date", "writable",
+					"creation_date", "writable", "data_tiering", "use_legacy_rotation",
 				}
 				if err := testutil.EqualMapKeys(body, keys...); err != nil {
 					t.Fatal(err)
@@ -251,7 +255,9 @@ EOF
   "index_optimization_disabled": true,
   "field_type_refresh_interval": 5000,
   "writable": true,
-  "default": false
+  "default": false,
+  "data_tiering": null,
+  "use_legacy_rotation": true
 }`
 			},
 		},
@@ -282,7 +288,9 @@ EOF
   "index_optimization_disabled": true,
   "field_type_refresh_interval": 5000,
   "writable": true,
-  "default": false
+  "default": false,
+  "data_tiering": null,
+  "use_legacy_rotation": true
 }`,
 		},
 	}
