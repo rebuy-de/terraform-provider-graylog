@@ -256,8 +256,12 @@ EOF
   "field_type_refresh_interval": 5000,
   "writable": true,
   "default": false,
-  "data_tiering": null,
-  "use_legacy_rotation": true
+  "data_tiering": {
+    "index_lifetime_max": "P40D",
+    "index_lifetime_min": "P30D",
+    "type": "hot_only"
+  },
+  "use_legacy_rotation": false
 }`
 			},
 		},
@@ -289,8 +293,12 @@ EOF
   "field_type_refresh_interval": 5000,
   "writable": true,
   "default": false,
-  "data_tiering": null,
-  "use_legacy_rotation": true
+  "data_tiering": {
+    "index_lifetime_max": "P40D",
+    "index_lifetime_min": "P30D",
+    "type": "hot_only"
+  },
+  "use_legacy_rotation": false
 }`,
 		},
 	}
@@ -326,6 +334,14 @@ EOF
 {
   "max_docs_per_index": 40000000,
   "type": "org.graylog2.indexer.rotation.strategies.MessageCountRotationStrategyConfig"
+}
+EOF
+
+  data_tiering = <<EOF
+{
+  "index_lifetime_max": "P40D",
+  "index_lifetime_min": "P30D",
+  "type": "hot_only"
 }
 EOF
 }

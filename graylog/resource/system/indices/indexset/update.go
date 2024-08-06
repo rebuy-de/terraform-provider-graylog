@@ -18,6 +18,8 @@ func update(d *schema.ResourceData, m interface{}) error {
 
 	if d.Get("data_tiering") != "" {
 		d.Set("use_legacy_rotation", false)
+	} else {
+		d.Set("use_legacy_rotation", true)
 	}
 
 	data, err := getDataFromResourceData(d)

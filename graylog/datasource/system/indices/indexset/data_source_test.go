@@ -1,7 +1,7 @@
 package indexset
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 	"testing"
@@ -30,7 +30,7 @@ func TestAccIndexSet(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "total": 3,
   "index_sets": [
     {
@@ -56,7 +56,9 @@ func TestAccIndexSet(t *testing.T) {
       "index_optimization_disabled": false,
       "field_type_refresh_interval": 5000,
       "writable": true,
-      "default": true
+      "default": true,
+      "data_tiering": null,
+      "use_legacy_rotation": true
     },
     {
       "id": "5ea81cc02ab79c00129dbf1c",
@@ -81,7 +83,9 @@ func TestAccIndexSet(t *testing.T) {
       "index_optimization_disabled": false,
       "field_type_refresh_interval": 60000,
       "writable": true,
-      "default": false
+      "default": false,
+      "data_tiering": null,
+      "use_legacy_rotation": true
     },
     {
       "id": "5ea81cc02ab79c00129dbf1f",
@@ -106,7 +110,9 @@ func TestAccIndexSet(t *testing.T) {
       "index_optimization_disabled": false,
       "field_type_refresh_interval": 60000,
       "writable": true,
-      "default": false
+      "default": false,
+      "data_tiering": null,
+      "use_legacy_rotation": true
     }
   ],
   "stats": {}
@@ -175,7 +181,7 @@ func TestAccIndexSet_byIndexSetID(t *testing.T) {
 			Response: func(req *http.Request) (*http.Response, error) {
 				return &http.Response{
 					StatusCode: 200,
-					Body: ioutil.NopCloser(strings.NewReader(`{
+					Body: io.NopCloser(strings.NewReader(`{
   "id": "5ea81cc02ab79c00129dbf1c",
   "title": "Graylog Events",
   "description": "Stores Graylog events.",
@@ -198,7 +204,9 @@ func TestAccIndexSet_byIndexSetID(t *testing.T) {
   "index_optimization_disabled": false,
   "field_type_refresh_interval": 60000,
   "writable": true,
-  "default": false
+  "default": false,
+  "data_tiering": null,
+  "use_legacy_rotation": true
 }`)),
 				}, nil
 			},
