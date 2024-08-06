@@ -32,6 +32,9 @@ func DataToJSON(data map[string]interface{}, keys ...string) error {
 		return nil
 	}
 	for _, key := range keys {
+		if data[key] == nil {
+			continue
+		}
 		s, err := json.Marshal(data[key])
 		if err != nil {
 			return fmt.Errorf("failed to marshal the '%s' as JSON: %w", key, err)
@@ -56,6 +59,10 @@ func JSONToData(data map[string]interface{}, keys ...string) error {
 	for _, key := range keys {
 		v, ok := data[key]
 		if !ok {
+			continue
+		}
+		if v.(string) == "" {
+			data[key] = nil
 			continue
 		}
 		attr, err := dataeq.JSON.ConvertByte([]byte(v.(string)))
