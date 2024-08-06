@@ -43,6 +43,10 @@ func DataSource() *schema.Resource {
 				Type:     schema.TypeString,
 				Computed: true,
 			},
+			"use_legacy_rotation": {
+				Type:     schema.TypeBool,
+				Computed: true,
+			},
 			"index_analyzer": {
 				Type:     schema.TypeString,
 				Computed: true,
