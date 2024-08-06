@@ -98,8 +98,7 @@ func Resource() *schema.Resource {
 			},
 			"use_legacy_rotation": {
 				Type:     schema.TypeBool,
-				Optional: true,
-				Default:  true,
+				Computed: true,
 			},
 			// field_type_refresh_interval was added from Graylog API v3
 			"field_type_refresh_interval": {
