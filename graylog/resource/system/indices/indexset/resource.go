@@ -96,6 +96,11 @@ func Resource() *schema.Resource {
 				DiffSuppressFunc: util.SchemaDiffSuppressJSONString,
 				ValidateFunc:     util.ValidateIsJSON,
 			},
+			"use_legacy_rotation": {
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  true,
+			},
 			// field_type_refresh_interval was added from Graylog API v3
 			"field_type_refresh_interval": {
 				Type:     schema.TypeInt,
